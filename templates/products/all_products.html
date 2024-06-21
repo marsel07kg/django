@@ -1,0 +1,19 @@
+{% include '../header.html' %}
+
+<button><a href="/manga/">manga</a></button>
+<button><a href="/comics/">comics</a></button>
+<button><a href="/another thing/">another_thing</a></button>
+<ol>
+    {% for i in products %}
+    <li>
+        <h1>{{i.title }}</h1>
+        <p>{{i.price }}</p>
+
+        {% for tag in i.tags.all %}
+        <p>#{{ tag.name }}</p>
+        {% endfor %}
+    </li>
+    {% endfor %}
+</ol>
+
+{% include '../footer.html' %}

@@ -1,0 +1,31 @@
+{% load static %}
+
+{% include '../header.html' %}
+
+<link rel="stylesheet" href="{% static 'css/style.css' %}">
+<h1>Имя - {{book_detail.name}}</h1>
+<p>Ваша почта - {{book_detail.name}}</p>
+<img src="{{book_detail.image_book.url}}" width="350" height="250" alt="">
+<p>О книге - {{book_detail.about_book}}</p>
+<p>Жанр - {{book_detail.genre}}</p>
+
+
+
+<data>Дата создание - {{book_detail.date_of_create}}</data>
+<a href="{{emp_id.urls_for_B}}">Перейти в по ссылке</a>
+<data>Дата создания поста - {{book_detail.created_at}}</data>
+
+<ul>
+    {% for i in book_detail.reviews_book.all %}
+        <li>
+        <h1>{{ i.stars }}</h1>
+        <p>{{ i.text }}</p>
+        <p>{{ i.created_at }}</p>
+        </li>
+
+
+    {% endfor %}
+</ul>
+
+
+{% include '../footer.html' %}

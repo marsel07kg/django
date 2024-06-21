@@ -1,0 +1,12 @@
+{% include '../header.html' %}
+<h1>Добавить книгу</h1>
+
+<form action="/create_book/" method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Добавить</button>
+    <button type="reset">Очистить</button>
+</form>
+
+
+{% include '../footer.html' %}

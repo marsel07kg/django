@@ -1,0 +1,10 @@
+{% include '../header.html' %}
+<center>
+    <h1>вы уверены что хотите удалить книгу</h1>
+    <form method="POST">
+        {% csrf_token %}
+        <button type="submit">Да</button>
+        <button> <a href="/librarys/">Нет</a></button>
+    </form>
+</center>
+{% include '../footer.html' %}
