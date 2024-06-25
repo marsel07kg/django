@@ -6,13 +6,15 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('users', '0002_remove_customuser_genre_customuser_types_book'),
+        ("users", "0002_remove_customuser_genre_customuser_types_book"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='customuser',
-            name='types_book',
-            field=models.CharField(max_length=100, null=True, verbose_name='предпочитаемые книги'),
+            model_name="customuser",
+            name="types_book",
+            field=models.CharField(
+                max_length=100, null=True, verbose_name="предпочитаемые книги"
+            ),
         ),
     ]

@@ -6,14 +6,14 @@ from django.dispatch import receiver
 from . import models
 
 GENDER_CHOICES = (
-    ('Male', 'Male'),
-    ('Female', 'Female'),
+    ("Male", "Male"),
+    ("Female", "Female"),
 )
 LITERARY_CLUB_CHOICES = (
-    ('not_readers', 'Not readers'),
-    ('beginners', 'beginners'),
-    ('amateur', 'amateur'),
-    ('veteran', 'veteran')
+    ("not_readers", "Not readers"),
+    ("beginners", "beginners"),
+    ("amateur", "amateur"),
+    ("veteran", "veteran"),
 )
 
 
@@ -27,37 +27,38 @@ class CustomRegistrationsForm(UserCreationForm):
     class Meta:
         model = models.CustomUser
         fields = (
-            'username',
-            'email',
-            'password1',
-            'password2',
-            'first_name',
-            'last_name',
-            'phone_number',
-            'age',
-            'types_book',
-            'status_of_reader',
+            "username",
+            "email",
+            "password1",
+            "password2",
+            "first_name",
+            "last_name",
+            "phone_number",
+            "age",
+            "types_book",
+            "status_of_reader",
         )
 
     def save(self, commit=True):
         user = super(CustomRegistrationsForm, self).save(commit=False)
-        user.email = self.cleaned_data['email']
+        user.email = self.cleaned_data["email"]
         if commit:
             user.save()
         return user
+
 
 @receiver(post_save, sender=models.CustomUser)
 def set_club(sender, instance, created, **kwargs):
     if created:
         status_of_reader = instance.status_of_reader
-        if status_of_reader == 'not_readers':
-            instance.literary_club = 'not_readers'
-        elif status_of_reader == 'beginner':
-            instance.literary_club = 'beginner'
-        elif status_of_reader == 'amateur':
-            instance.literary_club = 'amateur'
-        elif status_of_reader == 'veteran':
-            instance.literary_club = 'veteran'
+        if status_of_reader == "not_readers":
+            instance.literary_club = "not_readers"
+        elif status_of_reader == "beginner":
+            instance.literary_club = "beginner"
+        elif status_of_reader == "amateur":
+            instance.literary_club = "amateur"
+        elif status_of_reader == "veteran":
+            instance.literary_club = "veteran"
         else:
-            instance.literary_club = 'Клуб не определен'
+            instance.literary_club = "Клуб не определен"
         instance.save()
