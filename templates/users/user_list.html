@@ -1,0 +1,22 @@
+<ul>
+    {% for i in users %}
+    <li>
+        <h1>Привет - {{ i.username }}</h1>
+        <p>Почта - {{  i.email }}</p>
+        <p>Имя - {{ i.first_name }}</p>
+        <p>Ваш возраст - {{ i.age }}</p>
+
+        {% if i.literary_club %}
+        <p>Вы принадлежите к клубу {{i.literary_club }}</p>
+        {% else %}
+        <p>Клуб не определен</p>
+
+        {% endif %}
+    </li>
+    {% endfor %}
+</ul>
+
+<form action="{% url 'users:logout' %}" method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+    <button type="submit">Выйти из аккаунта</button>
+</form>
